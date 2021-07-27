@@ -14,7 +14,7 @@ class FakepostsController extends Controller
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
             // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
-            $fakeposts = $user->fakeposts()->orderBy('created_at', 'desc')->paginate(10);
+            $fakeposts = $user->feed_fakeposts()->orderBy('created_at', 'desc')->paginate(10);
 
             $data = [
                 'user' => $user,
