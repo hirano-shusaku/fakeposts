@@ -20,4 +20,11 @@
             <span class="badge badge-secondary">{{ $user->followers_count }}</span>
         </a>
     </li>
+     {{-- like一覧タブ --}}
+    <li class="nav-item">
+        <a href="{{ route('users.postlikes', ['id' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.postlikes') ? 'active' : '' }}">
+            Favorites
+            <span class="badge badge-secondary">{{ $user->postlikes_count }}</span>
+        </a>
+    </li>
 </ul>

@@ -70,4 +70,22 @@ class UsersController extends Controller
             'users' => $followers,
         ]);
     }
+    
+     public function likeings($id)
+    {
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+
+        // 関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+
+        // ユーザの投稿likes一覧を取得
+        $likeings = $user->postlikes()->paginate(10);
+
+        // フォロー一覧ビューでそれらを表示
+        return view('users.postlikes', [
+            'user' => $user,
+            'fakeposts' => $likeings,
+        ]);
+    }
 }

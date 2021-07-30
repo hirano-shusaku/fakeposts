@@ -15,4 +15,9 @@ class Fakepost extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function postlikes_users()
+    {
+        return $this->belongsToMany(User::class, 'post_like', 'fakepost_id', 'user_id')->withTimestamps();
+    }
 }

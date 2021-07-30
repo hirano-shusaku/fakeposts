@@ -14,13 +14,15 @@
                         {{-- 投稿内容 --}}
                         <p class="mb-0">{!! nl2br(e($fakepost->content)) !!}</p>
                     </div>
-                    <div>
+                    <div class="d-flex flex-row">
                         @if (Auth::id() == $fakepost->user_id)
                             {{-- 投稿削除ボタンのフォーム --}}
                             {!! Form::open(['route' => ['fakeposts.destroy', $fakepost->id], 'method' => 'delete']) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                             {!! Form::close() !!}
                         @endif
+                        {{-- like／アンlikeボタン --}}
+                        @include('postlike.like_button')
                     </div>
                 </div>
             </li>

@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
     }
     
+    public function postlikes()
+    {
+        return $this->belongsToMany(Fakepost::class, 'post_like', 'user_id', 'fakepost_id')->withTimestamps();
+    }
+    
     public function follow($userId)
     {
         // すでにフォローしているかの確認
@@ -101,11 +106,47 @@ class User extends Authenticatable
         // それらのユーザが所有する投稿に絞り込む
         return Fakepost::whereIn('user_id', $userIds);
     }
+    
+    public function like($fakepostId)
+    {
+        // すでにその投稿をlikeしているかの確認
+        $exist = $this->is_likeing($fakepostId);
+       
+        if ($exist) {
+            // すでにlikeしていれば何もしない
+            return false;
+        } else {
+            // 未likeであればpostlikesする
+            $this->postlikes()->attach($fakepostId);
+            return true;
+        }
+    }
+    
+    public function unlike($fakepostId)
+    {
+        
+        $exist = $this->is_likeing($fakepostId);
+       
+        if ($exist) {
+            
+             $this->postlikes()->detach($fakepostId);
+            return true;
+        } else {
+            
+            return false;
+        }
+    }
+    
+     public function is_likeing($fakepostId)
+    {
+        
+        return $this->postlikes()->where('fakepost_id', $fakepostId)->exists();
+    }
 
 
     
     public function loadRelationshipCounts()
     {
-        $this->loadCount(['fakeposts', 'followings', 'followers']);
+        $this->loadCount(['fakeposts', 'followings', 'followers','postlikes']);
     }
 }
