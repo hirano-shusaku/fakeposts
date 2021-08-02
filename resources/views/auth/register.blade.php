@@ -13,6 +13,16 @@
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
+                
+                <div class="form-group">
+                    {!! Form::label('age', 'Age') !!}
+                    {!! Form::number('age', null, ['class' => 'form-control', 'placeholder' => '例：1', 'min' => 0, 'max' => 99]) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('profile', 'ShortProfile') !!}
+                    {!! Form::text('profile', null, ['class' => 'form-control']) !!}
+                </div>
 
                 <div class="form-group">
                     {!! Form::label('email', 'Email') !!}

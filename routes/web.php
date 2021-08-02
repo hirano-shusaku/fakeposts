@@ -26,11 +26,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
-        Route::get('postlikes', 'UsersController@likeings')->name('users.postlikes'); //このルーティングなのですが   
+        Route::get('postlikes', 'UsersController@likeings')->name('users.postlikes'); //このルーティングが投稿をlike 
     });
     
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::resource('fakeposts', 'FakepostsController', ['only' => ['store', 'destroy']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('fakeposts', 'FakepostsController', ['only' => ['store', 'destroy', 'edit', 'update']]);
     
     Route::group(['prefix' => 'fakeposts/{id}'], function () {
         Route::post('like', 'PostLikeController@store')->name('post.like');

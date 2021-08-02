@@ -6,6 +6,19 @@
         {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
         <img class="rounded img-fluid" src="{{ Gravatar::get($user->email, ['size' => 500]) }}" alt="">
     </div>
+   
+    <div class="alert alert-primary" role="alert">
+        【年齢】：
+        {{ $user->age }}
+    </div>
+    
+    <div class="alert alert-danger" role="alert">
+        【プロフィール】<br>
+        {{ $user->profile }}
+    </div>
+    
+    @include('user_follow.edit_button')   
+        
 </div>
 {{-- フォロー／アンフォローボタン --}}
 @include('user_follow.follow_button')

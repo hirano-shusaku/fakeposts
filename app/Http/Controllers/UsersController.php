@@ -36,6 +36,37 @@ class UsersController extends Controller
         ]);
     }
     
+     public function edit($id)
+    {
+        // idの値でユーザーを検索してデータ取得
+        $user = User::findOrFail($id);
+        
+        // ユーザー編集ビューでそれを表示
+        return view('users.edit', [
+            'user' => $user,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        // バリデーション
+        $request->validate([
+            'age' => 'required|max:255',
+            'profile' => 'required|max:255',
+        ]);
+        // idの値でユーザーを検索して取得
+        $user =  \App\User::findOrFail($id);
+        // メッセージを更新
+        $user->age = $request->age;
+        $user->profile = $request->profile;
+        $user->save();
+        
+        //ログイン後のトップページに戻る
+        return redirect('/');
+        
+       
+    }
+    
     public function followings($id)
     {
         // idの値でユーザを検索して取得

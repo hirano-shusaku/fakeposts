@@ -23,6 +23,7 @@
                         @endif
                         {{-- like／アンlikeボタン --}}
                         @include('postlike.like_button')
+                        @include('postlike.edit_button')   
                     </div>
                 </div>
             </li>

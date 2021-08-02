@@ -55,5 +55,36 @@ class FakepostsController extends Controller
         return back();
     }
     
+    public function edit($id)
+    {
+        // idの値で投稿を検索して取得
+        $fakepost = \App\Fakepost::findOrFail($id);
+
+        // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、
+        if (\Auth::id() === $fakepost->user_id) {
+            
+           return view('fakeposts.edit', [
+            'fakepost' => $fakepost,
+        ]);
+        }
+
+    }
     
+    public function update(Request $request, $id)
+    {
+        // バリデーション
+        $request->validate([
+            'content' => 'required|max:255',
+        ]);
+        // idの値でメッセージを検索して取得
+        $fakepost =  \App\Fakepost::findOrFail($id);
+        // メッセージを更新
+        $fakepost->content = $request->content;
+        $fakepost->save();
+        
+        //ログイン後のトップページに戻る
+        return redirect('/');
+        
+       
+    }
 }
