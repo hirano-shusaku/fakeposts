@@ -37,8 +37,18 @@ class FakepostsController extends Controller
             'content' => $request->content,
         ]);
 
-        // 前のURLへリダイレクトさせる
-        return back();
+        // login後のURLへリダイレクトさせる
+        return redirect('/');
+    }
+    
+    public function create()
+    {
+        $fakepost = new \App\Fakepost;
+
+        // メッセージ作成ビューを表示
+        return view('fakeposts.create', [
+            'fakepost' => $fakepost,
+        ]);
     }
     
     public function destroy($id)

@@ -9,7 +9,9 @@
             </aside>
             <div class="col-sm-8">
                 {{-- 投稿フォーム --}}
-                @include('fakeposts.form')
+                {{-- @include('fakeposts.form') --}}
+                @include('fakeposts.create_button')
+                
                 {{-- 投稿一覧 --}}
                 @include('fakeposts.fakeposts')
             </div>

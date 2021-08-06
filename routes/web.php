@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
-    Route::resource('fakeposts', 'FakepostsController', ['only' => ['store', 'destroy', 'edit', 'update']]);
+    Route::resource('fakeposts', 'FakepostsController', ['only' => ['store', 'destroy', 'edit', 'update', 'create']]);
     
     Route::group(['prefix' => 'fakeposts/{id}'], function () {
         Route::post('like', 'PostLikeController@store')->name('post.like');

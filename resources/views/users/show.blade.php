@@ -11,7 +11,8 @@
             @include('users.navtabs')
                 @if (Auth::id() == $user->id)
                 {{-- 投稿フォーム --}}
-                @include('fakeposts.form')
+                {{-- @include('fakeposts.form') --}}
+                @include('fakeposts.create_button')
                 @endif
                 {{-- 投稿一覧 --}}
                 @include('fakeposts.fakeposts')
