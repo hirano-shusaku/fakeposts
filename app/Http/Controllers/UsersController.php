@@ -63,8 +63,21 @@ class UsersController extends Controller
         
         //ログイン後のトップページに戻る
         return redirect('/');
+    }
+    
+    public function destroy($id)
+    {
+        // idの値でユーザーを検索してデータ取得
+        $user = User::findOrFail($id);
         
-       
+        $user->delete();
+        
+        return redirect('/');
+    }
+
+    public function delete_confirm()
+    {
+        return view('users.delete_confirm');
     }
     
     public function followings($id)

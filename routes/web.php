@@ -27,9 +27,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get('postlikes', 'UsersController@likeings')->name('users.postlikes'); //このルーティングが投稿をlike 
+        Route::get('users','UsersController@delete_confirm')->name('users.delete_confirm');//警告画面に飛ばしたいため追記
+    
     });
     
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update', 'destroy']]);//destroyを追記
+
     Route::resource('fakeposts', 'FakepostsController', ['only' => ['store', 'destroy', 'edit', 'update', 'create']]);
     
     Route::group(['prefix' => 'fakeposts/{id}'], function () {

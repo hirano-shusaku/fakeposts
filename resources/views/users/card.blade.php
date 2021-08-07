@@ -17,7 +17,8 @@
         {{ $user->profile }}
     </div>
     
-    @include('user_follow.edit_button')   
+    @include('user_follow.edit_button')  
+    @include('user_follow.delite_button')  
         
 </div>
 {{-- フォロー／アンフォローボタン --}}

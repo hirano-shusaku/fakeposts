@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <div class="container">
     <div class="card border-dark mb-3">
         <div class="card-header">
@@ -19,3 +23,4 @@
         </div>
     </div>
 </div>
+@endsection
