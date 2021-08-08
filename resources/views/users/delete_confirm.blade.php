@@ -10,6 +10,9 @@
       <div class="card-body">
         <p class="card-text">退会をすると投稿も全て削除されます。</p>
         <p class="card-text">それでも退会をしますか？</p>
+        <img src="/images/logo.png"><br>
+        <img src="/images/photo01.jpg">
+        
       </div>
     </div>
 
